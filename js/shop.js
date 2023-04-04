@@ -110,12 +110,13 @@ function buy(id) {
 }
 
 // Exercise 2
+
 function cleanCart() {
 
-    cartList.splice(0,cartList.length)
-    total = 0;
-    console.log("Tu carro esta vacio " + cartList.length);
+    cartList.splice(0,cartList.length);
+    console.log(cartList);
     document.getElementById("count_product").innerHTML = cartList.length;
+    open_modal();
 }
 
 // Exercise 3
@@ -206,14 +207,32 @@ function applyPromotionsCart() {
 // Exercise 6
 function printCart() {
 
+    applyPromotionsCart()
+
+  
     let c;
-    for(c=0; c<cartListShow; c++) {
-        document.getElementById("")
+    let totalPrice = 0;
+    for(c=0; c<cartListShow.length; c++) {
+        let print = document.getElementById("cart_list");
+        let row = print.insertRow();
+        let cell1 = row.insertCell();
+        let cell2 = row.insertCell();
+        let cell3 = row.insertCell();
+        let cell4 = row.insertCell();
+        cell1.innerHTML = cartListShow[c].name;
+        cell2.innerHTML = cartListShow[c].price;
+        cell3.innerHTML = cartListShow[c].quantity;
+        cell4.innerHTML = cartListShow[c].subtotalWithDiscount; 
+        totalPrice += cartListShow[c].subtotalWithDiscount; 
     }
 
+    document.getElementById("total_price").innerHTML = totalPrice;
 
-    // Fill the shopping cart modal manipulating the shopping cart dom
+
 }
+
+
+ // Fill the shopping cart modal manipulating the shopping cart dom
 
 
 // ** Nivell II **
