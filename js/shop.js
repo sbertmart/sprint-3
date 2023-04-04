@@ -64,10 +64,6 @@ var products = [
      }
  ]
 
- let variedadDeProductos = products.length;
-
- console.log(variedadDeProductos);
-
 
 // Array with products (objects) added directly with push(). Products in this array are repeated.
 var cartList = [];
@@ -77,11 +73,9 @@ var cartList = [];
 // creamos el Cart
 var cart = [];
 let m;
-for(m=0; m<variedadDeProductos; m++) {
+for(m=0; m<products.length; m++) {
     cart.push(products[m]);
 }
-
-console.log(cart);
 
 let n;
 for(n=0; n<cart.length; n++) {
@@ -90,7 +84,7 @@ cart[n].subtotal= 0;
 cart[n].subtotalWithDiscount = 0;
 }
 
-console.log(cart);
+//Se genera el array de objetos cart, que coge los datos de products y añade las propiedades de quantity, precio y descuento a cada objeto
 
 var total = 0;
 
@@ -99,7 +93,7 @@ function buy(id) {
 
     let ref = id-1;
     let n
-    for(n=0; n<=variedadDeProductos; n++) {
+    for(n=0; n<=products.length; n++) {
     if (ref == n) {
         cartList.push(products[n]);
         total += products[n].price;
@@ -139,6 +133,8 @@ function calculateTotal() {
 
 // Exercise 4
 
+let cartListShow = [];
+
 function generateCart() {
 
     let v;
@@ -151,7 +147,6 @@ function generateCart() {
         }
     }
 
-    let cartListShow = [];
     let z;
     for (z=0; z<cart.length; z++) {
         if (cart[z].quantity > 0) {
@@ -159,10 +154,15 @@ function generateCart() {
         }
     }
 
-    console.log(cartListShow);
+    //actualiza subtotales
 
-    }
-
+    let y;
+    for(y=0; y<cartListShow.length; y++) {
+        cartListShow[y].subtotal = (cartListShow[y].quantity * cartListShow[y].price);
+        cartListShow[y].subtotalWithDiscount = cartListShow[y].subtotal;
+        console.log ("Producto " + cartListShow[y].name + " Cantidad " + cartListShow[y].quantity);
+    }   
+}
 
     
     // Using the "cartlist" array that contains all the items in the shopping cart, 
@@ -171,11 +171,47 @@ function generateCart() {
 
 // Exercise 5
 function applyPromotionsCart() {
+
+    generateCart()
+
+    let descuentoOli = false;
+    // Ampolles d'oli
+    let o;
+    for(o=0; o<cartListShow.length; o++) {
+        if (cartListShow[o].id == 1 && cartListShow[o].quantity> 2) {
+            descuentoOli = true; console.log("hay descuento de aceite");
+            cartListShow[o].subtotalWithDiscount = cartListShow[o].subtotal - 10;
+        } 
+    }
+
+    let descuentoPastis = false;
+    // Pastis
+
+    let p;
+    for(p=0; p<cartListShow.length; p++) {
+        if (cartListShow[p].id == 3 && cartListShow[p].quantity> 10) {
+            descuentoPastis = true; console.log("hay descuento de pasteleria");
+            cartListShow[p].subtotalWithDiscount = cartListShow[p].subtotal * 0.6666;
+        }
+    }
     // Apply promotions to each item in the array "cart"
+
+    if (descuentoPastis == true || descuentoOli == true) {
+        console.log ("Se han aplicado tus descuentos " );
+    } else {console.log("Tu carrito no tiene descuentos");}
+
+    console.log(cartListShow);
 }
 
 // Exercise 6
 function printCart() {
+
+    let c;
+    for(c=0; c<cartListShow; c++) {
+        document.getElementById("")
+    }
+
+
     // Fill the shopping cart modal manipulating the shopping cart dom
 }
 
