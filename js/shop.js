@@ -92,7 +92,7 @@ var total = 0;
 function buy(id) {
 
     let ref = id-1;
-    let n
+    let n;
     for(n=0; n<=products.length; n++) {
     if (ref == n) {
         cartList.push(products[n]);
@@ -113,11 +113,27 @@ function buy(id) {
 
 function cleanCart() {
 
+    var Parent = document.getElementById("cart_list");
+    while(Parent.hasChildNodes())
+    {
+    Parent.removeChild(Parent.firstChild);
+    }
+
+    document.getElementById("total_price").innerHTML = 0;
+    
+    let borrarCart;
+    for(borrarCart=0; borrarCart<cart.length; borrarCart++) {
+        cart[borrarCart].quantity=0;
+    }
     cartList.splice(0,cartList.length);
+    cartListShow.splice(0, cartListShow.length);
+
+    console.log(cart);
     console.log(cartList);
-    document.getElementById("count_product").innerHTML = cartList.length;
-    open_modal();
+    console.log(cartListShow);
+
 }
+
 
 // Exercise 3
 function calculateTotal() {
@@ -212,6 +228,7 @@ function printCart() {
   
     let c;
     let totalPrice = 0;
+    
     for(c=0; c<cartListShow.length; c++) {
         let print = document.getElementById("cart_list");
         let row = print.insertRow();
