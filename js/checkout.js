@@ -22,27 +22,32 @@ function validate() {
 	if(fName.value.length < 3){
 		error++;
 		errorName.style.display = "block";
+		document.getElementsByClassName("form-control")[0].style.border = "2px solid red";
 	}
 
 	if(fLastN.value.length < 3){
 		error++;
 		errorLastN.style.display = "block";
+		document.getElementsByClassName("form-control")[3].style.border = "2px solid red";
 	}
 
 	var hayArroba = fEmail.value.includes('@');
 	if(fEmail.value.length < 3 || hayArroba == false){
 		error++;
 		errorEmail.style.display = "block";
+		document.getElementsByClassName("form-control")[1].style.border = "2px solid red";
 	}
 
 	if(fPassword.value.length < 4){
 		error++;
 		errorPassword.style.display = "block";
+		document.getElementsByClassName("form-control")[4].style.border = "2px solid red";
 	}
 
 	if(fAddress.value.length < 3){
 		error++;
 		errorAddress.style.display = "block";
+		document.getElementsByClassName("form-control")[2].style.border = "2px solid red";
 	}
 
 	var esUnNumero = typeof parseInt(fPhone.value);
@@ -51,6 +56,7 @@ function validate() {
 	if(fPhone.value.length < 9 || fPhone.value.length > 9 || esUnNumero !== "number" ){
 		error++;
 		errorPhone.style.display = "block";
+		document.getElementsByClassName("form-control")[5].style.border = "2px solid red";
 	}
 	 
 	if(error>0){
