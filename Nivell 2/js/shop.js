@@ -64,13 +64,8 @@ var products = [
      }
  ]
 
+// añadimos las propiedades quantity, subtotal y total a los objetos del array product, y lo llamamos Cart
 
-// Array with products (objects) added directly with push(). Products in this array are repeated.
-var cartList = [];
-
-// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-
-// creamos el Cart llamando a todos los objetos del array products y le añadimos las propiedades quantity, subtotal y total 
 var cart = [];
 let m;
 for(m=0; m<products.length; m++) {
@@ -80,32 +75,44 @@ for(m=0; m<products.length; m++) {
 let n;
 for(n=0; n<cart.length; n++) {
 cart[n].quantity = 0;
-cart[n].subtotal= 0;
-cart[n].subtotalWithDiscount = 0;
+cart[n].subtotal= cart[n].quantity * cart[n].price;
+cart[n].subtotalWithDiscount = cart[n].price;
 }
+
+console.log(cart);
 
 // total del cartList
 var total = 0;
 
-// Exercise 1
+// contador del cart
+let contador = 0;
+
+function actualitzarContador() {
+    let m;
+    contador =0;
+    for(m=0; m<cart.length; m++) {
+    if (cart[m].quantity > 0) {
+        contador += cart[m].quantity;
+    }    
+    }
+    document.getElementById("count_product").innerHTML = contador;
+}
+
+// Exercise aqui afegirem directament quantitats al array cart
 function buy(id) {
 
     let ref = id-1;
     let n;
-    for(n=0; n<=products.length; n++) {
+    for(n=0; n<products.length; n++) {
     if (ref == n) {
-        cartList.push(products[n]);
+        cart[n].quantity ++;
         total += products[n].price;
        }
     }
-    console.log("Se ha añadido un nuevo producto a tu carrito");
-    console.log(cartList);
-    console.log("El total de tu carrito es de " + total + " $");
-    document.getElementById("count_product").innerHTML = cartList.length;
 
+    actualitzarContador();
+    calculPromo();
 
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
 }
 
 // Exercise 2
@@ -124,135 +131,112 @@ function cleanCart() {
     for(borrarCart=0; borrarCart<cart.length; borrarCart++) {
         cart[borrarCart].quantity=0;
     }
-    cartList.splice(0,cartList.length);
-    cartListShow.splice(0, cartListShow.length);
+    
+    let contador = 0;
+    document.getElementById("count_product").innerHTML = contador;
 
     console.log(cart);
-    console.log(cartList);
-    console.log(cartListShow);
-
 }
 
-
-// Exercise 3
-function calculateTotal() {
-   
-    let preu = cartList[j].price;
-    let j
-    let total
-    for(j=0; j<=(cartList.length+1); j++) {
-        total=+preu;
-    }
-   console.log("El total de tu compra es de " + total + " Euros")
-    // Calculate total price of the cart using the "cartList" array
-}
 
 // Exercise 4
 
-let cartListShow = [];
+function calculPromo() {
 
-function generateCart() {
+    //calcul de promocions 
 
-    let v;
-    for (v=0; v<cartList.length; v++) {
-        let w;
-        for(w=0; w<cart.length; w++) {
-            if (cartList[v].id == cart[w].id) {
-                cart[w].quantity += 1; 
-            }
-        }
-    }
-
-    let z;
-    for (z=0; z<cart.length; z++) {
-        if (cart[z].quantity > 0) {
-            cartListShow.push(cart[z]);
-        }
-    }
-
-    //actualiza subtotales
-
-    let y;
-    for(y=0; y<cartListShow.length; y++) {
-        cartListShow[y].subtotal = (cartListShow[y].quantity * cartListShow[y].price);
-        cartListShow[y].subtotalWithDiscount = cartListShow[y].subtotal;
-        console.log ("Producto " + cartListShow[y].name + " Cantidad " + cartListShow[y].quantity);
-    }   
-}
-
-    
-    // Using the "cartlist" array that contains all the items in the shopping cart, 
-    // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
-
-
-// Exercise 5
-function applyPromotionsCart() {
-
-    generateCart()
-
-    let descuentoOli = false;
-    // Ampolles d'oli
     let o;
-    for(o=0; o<cartListShow.length; o++) {
-        if (cartListShow[o].id == 1 && cartListShow[o].quantity> 2) {
-            descuentoOli = true; console.log("hay descuento de aceite");
-            cartListShow[o].subtotalWithDiscount = cartListShow[o].subtotal - 10;
-        } 
-    }
-
-    let descuentoPastis = false;
-    // Pastis
-
-    let p;
-    for(p=0; p<cartListShow.length; p++) {
-        if (cartListShow[p].id == 3 && cartListShow[p].quantity> 10) {
-            descuentoPastis = true; console.log("hay descuento de pasteleria");
-            cartListShow[p].subtotalWithDiscount = cartListShow[p].subtotal * 0.6666;
+    for(o=0; o<cart.length; o++) {
+        if(cart[o].id==1 && cart[o].quantity > 2) {
+            cart[o].price = 10;
+        }
+        if(cart[o].id==3 && cart[o].quantity > 10) {
+            cart[o].price *=0.66;
         }
     }
-    // Apply promotions to each item in the array "cart"
 
-    if (descuentoPastis == true || descuentoOli == true) {
-        console.log ("Se han aplicado tus descuentos " );
-    } else {console.log("Tu carrito no tiene descuentos");}
-
-    console.log(cartListShow);
 }
+
+
+let totalPrice = 0;
 
 // Exercise 6
 function printCart() {
+ 
+    calculPromo();
+      //impresió al modal + calcul de totals
+      totalPrice = 0;
+      var Parent = document.getElementById("cart_list");
+      while(Parent.hasChildNodes()){
+      Parent.removeChild(Parent.firstChild);
+      }
 
-    applyPromotionsCart()
-
-  
-    let c;
-    let totalPrice = 0;
-    
-    for(c=0; c<cartListShow.length; c++) {
+    for(c=0; c<cart.length; c++) {
+        if (cart[c].quantity > 0) {
+        cart[c].subtotalWithDiscount = cart[c].price * cart[c].quantity;    
         let print = document.getElementById("cart_list");
         let row = print.insertRow();
         let cell1 = row.insertCell();
         let cell2 = row.insertCell();
         let cell3 = row.insertCell();
         let cell4 = row.insertCell();
-        cell1.innerHTML = cartListShow[c].name;
-        cell2.innerHTML = cartListShow[c].price;
-        cell3.innerHTML = cartListShow[c].quantity;
-        cell4.innerHTML = cartListShow[c].subtotalWithDiscount; 
-        totalPrice += cartListShow[c].subtotalWithDiscount; 
+        let cell5 = row.insertCell();
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "-";
+        deleteButton.className = "boton_carrito";
+        deleteButton.id = cart[c].id;
+        cell5.appendChild(deleteButton);
+        deleteButton.addEventListener("click", () => {
+            let d;
+            let index = deleteButton.id;
+            for (d=0; d<cart.length; d++) {
+                if (cart[d].id == index ) {
+                    cart[d].quantity -=1;
+                    console.log(cart);
+                    if (cart[d].quantity >0) {
+                        printCart();
+                    }
+                    if (cart[d].quantity <=0) {
+                        var td = event.target.parentNode; 
+                        var tr = td.parentNode;
+                        tr.parentNode.removeChild(tr);
+                        printCart();
+                    }
+                printCart();    
+                }
+            }
+        });
+        let cell6 = row.insertCell();
+        let addButton = document.createElement("button");
+        addButton.textContent = "+";
+        addButton.className = "boton_carrito";
+        addButton.id = cart[c].id;
+        cell6.appendChild(addButton);
+        addButton.addEventListener("click", () => {
+            let d;
+            let index = addButton.id;
+            for (d=0; d<cart.length; d++) {
+                if (cart[d].id == index ) {
+                    cart[d].quantity +=1;
+                    printCart();    
+                }
+            }
+        });
+        cell1.innerHTML = cart[c].name;
+        cell2.innerHTML = cart[c].price.toFixed(2);
+        cell3.innerHTML = cart[c].quantity;
+        cell4.innerHTML = cart[c].subtotalWithDiscount.toFixed(2); 
+        totalPrice += cart[c].subtotalWithDiscount; 
+        }
     }
 
     document.getElementById("total_price").innerHTML = totalPrice;
 }
 
 
- // Fill the shopping cart modal manipulating the shopping cart dom
-
-
-// ** Nivell II **
-
 // Exercise 7
 function addToCart(id) {
+    // ***** Esto lo he conseguido simplificando el proceso arriba
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
@@ -260,8 +244,7 @@ function addToCart(id) {
 
 // Exercise 8
 function removeFromCart(id) {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+
 }
 
 function open_modal(){
