@@ -67,9 +67,12 @@ var products = [
 
 // Array with products (objects) added directly with push(). Products in this array are repeated.
 var cartList = [];
+// lo resuelvo mas adelante
+
+// contador del icono del carrito
+let counter = 0;
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-
 // creamos el Cart llamando a todos los objetos del array products y le añadimos las propiedades quantity, subtotal y total 
 var cart = [];
 let m;
@@ -88,104 +91,92 @@ cart[n].subtotalWithDiscount = 0;
 var total = 0;
 
 // Exercise 1
+// en lugar de añadir objetos de products a otro array, trabajo sobre el array cart, con todos los productos con la cantidad a 0 y solo añado 1 unidad cada vez que alguien compra.
 function buy(id) {
 
     let ref = id-1;
     let n;
     for(n=0; n<=products.length; n++) {
     if (ref == n) {
-        cartList.push(products[n]);
-        total += products[n].price;
+        cart[n].quantity +=1;
+        total += cart[n].price;
+        cart[n].subtotal= cart[n].quantity * cart[n].price;
+        cart[n].subtotalWithDiscount = cart[n].subtotal;
+        counter +=1;
+        document.getElementById("count_product").innerHTML = counter;
        }
     }
-    console.log("Se ha añadido un nuevo producto a tu carrito");
-    console.log(cartList);
-    console.log("El total de tu carrito es de " + total + " $");
-    document.getElementById("count_product").innerHTML = cartList.length;
-
-
+console.log ("Has comprado un producto");
+console.log(cart);
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    calculateTotal();
 }
 
 // Exercise 2
 
 function cleanCart() {
+// elimino la cartList que crearemos más adelante, de esta forma no se duplican las filas al abrir el modal.    
 
-    var Parent = document.getElementById("cart_list");
-    while(Parent.hasChildNodes())
-    {
-    Parent.removeChild(Parent.firstChild);
-    }
-
+    cleanRows();
+    counter=0;
+    document.getElementById("count_product").innerHTML = 0;
     document.getElementById("total_price").innerHTML = 0;
     
-    let borrarCart;
-    for(borrarCart=0; borrarCart<cart.length; borrarCart++) {
-        cart[borrarCart].quantity=0;
-    }
     cartList.splice(0,cartList.length);
-    cartListShow.splice(0, cartListShow.length);
+    
+}
 
-    console.log(cart);
-    console.log(cartList);
-    console.log(cartListShow);
+// elimino las filas del modal cada vez que se abre, se vuelven a generar actualizadas y no se añaden
+
+function cleanRows() {
+    var tableHeaderRowCount = 0;
+    var table = document.getElementById('cart_list');
+    var rowCount = table.rows.length;
+    for (var i = tableHeaderRowCount; i < rowCount; i++) {
+    table.deleteRow(tableHeaderRowCount);
+}
 
 }
 
-
 // Exercise 3
+// se muestra en console cada vez que compras algo
 function calculateTotal() {
    
-    let preu = cartList[j].price;
-    let j
-    let total
-    for(j=0; j<=(cartList.length+1); j++) {
-        total=+preu;
+    let j;
+    let total = 0;
+    for(j=0; j<cart.length; j++) {
+    total += cart[j].subtotalWithDiscount;
     }
-   console.log("El total de tu compra es de " + total + " Euros")
+    
+   console.log("Total de la compra " + total + " $");
     // Calculate total price of the cart using the "cartList" array
 }
 
 // Exercise 4
-
-let cartListShow = [];
+// generamos la lista que se nos mostrará al modal añadiendo solo los prodcutos del cart que tienen mas de 0 unidades.
 
 function generateCart() {
 
     let v;
-    for (v=0; v<cartList.length; v++) {
-        let w;
-        for(w=0; w<cart.length; w++) {
-            if (cartList[v].id == cart[w].id) {
-                cart[w].quantity += 1; 
-            }
-        }
+    for (v=0; v<cart.length; v++) {
+       if(cart[v].quantity>0) {
+        cartList.push(cart[v]);
+        cartList[v].subtotal = (cartList[v].quantity * cartList[v].price);
+        cartList[v].subtotalWithDiscount = cartList[v].subtotal;
+       }
     }
+console.log("Tu carrito");    
+console.log (cartList);
 
-    let z;
-    for (z=0; z<cart.length; z++) {
-        if (cart[z].quantity > 0) {
-            cartListShow.push(cart[z]);
-        }
-    }
-
-    //actualiza subtotales
-
-    let y;
-    for(y=0; y<cartListShow.length; y++) {
-        cartListShow[y].subtotal = (cartListShow[y].quantity * cartListShow[y].price);
-        cartListShow[y].subtotalWithDiscount = cartListShow[y].subtotal;
-        console.log ("Producto " + cartListShow[y].name + " Cantidad " + cartListShow[y].quantity);
-    }   
 }
 
-    
-    // Using the "cartlist" array that contains all the items in the shopping cart, 
-    // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+// Using the "cartlist" array that contains all the items in the shopping cart, 
+// generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
 
 
 // Exercise 5
+// Creamos 2 bucles for para rastrear si se cumplen las condiciones, se muestra resultado por console.
 function applyPromotionsCart() {
 
     generateCart()
@@ -193,10 +184,11 @@ function applyPromotionsCart() {
     let descuentoOli = false;
     // Ampolles d'oli
     let o;
-    for(o=0; o<cartListShow.length; o++) {
-        if (cartListShow[o].id == 1 && cartListShow[o].quantity> 2) {
+    for(o=0; o<cartList.length; o++) {
+        if (cartList[o].id == 1 && cartList[o].quantity> 2) {
             descuentoOli = true; console.log("hay descuento de aceite");
-            cartListShow[o].subtotalWithDiscount = cartListShow[o].subtotal - 10;
+            cartList[o].price=10;
+            cartList[o].subtotalWithDiscount = cartList[o].price * cartList[o].quantity;
         } 
     }
 
@@ -204,10 +196,11 @@ function applyPromotionsCart() {
     // Pastis
 
     let p;
-    for(p=0; p<cartListShow.length; p++) {
-        if (cartListShow[p].id == 3 && cartListShow[p].quantity> 10) {
+    for(p=0; p<cartList.length; p++) {
+        if (cartList[p].id == 3 && cartList[p].quantity> 10) {
             descuentoPastis = true; console.log("hay descuento de pasteleria");
-            cartListShow[p].subtotalWithDiscount = cartListShow[p].subtotal * 0.6666;
+            cartList[p].price *= 0.66;
+            cartList[p].subtotalWithDiscount = (cartList[p].price * cartList[p].quantity).toFixed(2);
         }
     }
     // Apply promotions to each item in the array "cart"
@@ -216,33 +209,37 @@ function applyPromotionsCart() {
         console.log ("Se han aplicado tus descuentos " );
     } else {console.log("Tu carrito no tiene descuentos");}
 
-    console.log(cartListShow);
+    console.log(cartList);
 }
 
 // Exercise 6
 function printCart() {
+    // lo primero que hacemos es llamar a la funcion que elimina todos los elementos de nuestra cartList para volver a generarla a partir de cart y que no se sumen cantidades 
+    cleanCart();
 
+    // volvemos a crear el carrito con las promociones (la funcion applyPromotionsCart incluye generateCart)
     applyPromotionsCart()
 
-  
     let c;
     let totalPrice = 0;
+
+    console.log(cartList);
     
-    for(c=0; c<cartListShow.length; c++) {
+    for(c=0; c<cartList.length; c++) {
         let print = document.getElementById("cart_list");
         let row = print.insertRow();
         let cell1 = row.insertCell();
         let cell2 = row.insertCell();
         let cell3 = row.insertCell();
         let cell4 = row.insertCell();
-        cell1.innerHTML = cartListShow[c].name;
-        cell2.innerHTML = cartListShow[c].price;
-        cell3.innerHTML = cartListShow[c].quantity;
-        cell4.innerHTML = cartListShow[c].subtotalWithDiscount; 
-        totalPrice += cartListShow[c].subtotalWithDiscount; 
+        cell1.innerHTML = cartList[c].name;
+        cell2.innerHTML = cartList[c].price.toFixed(2);
+        cell3.innerHTML = cartList[c].quantity;
+        cell4.innerHTML = cartList[c].subtotalWithDiscount; 
+        totalPrice += cartList[c].subtotalWithDiscount; 
     }
 
-    document.getElementById("total_price").innerHTML = totalPrice;
+    document.getElementById("total_price").innerHTML = totalPrice.toFixed(2);
 }
 
 
@@ -265,6 +262,8 @@ function removeFromCart(id) {
 }
 
 function open_modal(){
+
+
 	console.log("Open Modal");
 	printCart();
 }
