@@ -4,46 +4,53 @@ function validate() {
 	var error = 0;
 	// Get the input fields
 	var fName = document.getElementById("fName");
-	console.log(fName.value);
+	var fLastN = document.getElementById("fLastN");
 	var fEmail = document.getElementById("fEmail");
-	console.log(fEmail.value);
+	var fPassword = document.getElementById("fPassword");
+	var fAddress = document.getElementById("fAddress");
+	var fPhone = document.getElementById("fPhone");
 
 	// Get the error elements
 	var errorName = document.getElementById("errorName");
-	var errorEmail = document.getElementById("errorEmail");  
+	var errorLastN = document.getElementById("errorLastN")
+	var errorEmail = document.getElementById("errorEmail");
+	var errorPassword = document.getElementById("errorPassword");
+	var errorAddress = document.getElementById("errorAddress");
+	var errorPhone = document.getElementById("errorPhone");       
 	
 	// Validate fields entered by the user: name, phone, password, and email
 	if(fName.value.length < 3){
 		error++;
-		console.log("Error");
+		errorName.style.display = "block";
 	}
 
 	if(fLastN.value.length < 3){
 		error++;
-		console.log("Error");
+		errorLastN.style.display = "block";
 	}
 
 	var hayArroba = fEmail.value.includes('@');
-	console.log (hayArroba);
-
 	if(fEmail.value.length < 3 || hayArroba == false){
 		error++;
-		console.log("Error");
+		errorEmail.style.display = "block";
 	}
 
-	if(fPassword.value.length < 4 || hayArroba == false){
+	if(fPassword.value.length < 4){
 		error++;
-		console.log("Error");
+		errorPassword.style.display = "block";
 	}
 
-	if(fAddress.value.length < 3 || hayArroba == false){
+	if(fAddress.value.length < 3){
 		error++;
-		console.log("Error");
+		errorAddress.style.display = "block";
 	}
 
-	if(fAddress.value.length < 3 || hayArroba == false){
+	var esUnNumero = typeof parseInt(fPhone.value);
+	console.log(esUnNumero);
+
+	if(fPhone.value.length < 9 || fPhone.value.length > 9 || esUnNumero !== "number" ){
 		error++;
-		console.log("Error");
+		errorPhone.style.display = "block";
 	}
 	 
 	if(error>0){
