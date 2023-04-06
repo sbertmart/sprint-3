@@ -64,7 +64,9 @@ var products = [
      }
  ]
 
-// añadimos las propiedades quantity, subtotal y total a los objetos del array product, y lo llamamos Cart
+// Creamos otro array "cart" y le añadimos las propiedades quantity, subtotal y total a los objetos del array product.
+// De esta forma product seria el inventario y cart una hoja de pedido con cantidades a 0 para empezar nuestra compra.
+// Soy consciente de que esta solución solo vale para tiendas con pocos productos.
 
 var cart = [];
 let m;
@@ -98,7 +100,7 @@ function actualitzarContador() {
     document.getElementById("count_product").innerHTML = contador;
 }
 
-// Exercise aqui afegirem directament quantitats al array cart
+// Aquí añadimos +1 a la cantidad de cada producto en el array cart.
 function buy(id) {
 
     let ref = id-1;
@@ -119,6 +121,7 @@ function buy(id) {
 
 function cleanCart() {
 
+    //borramos las filas del modal para que no se sumen cada vez que lo abrimos
     var Parent = document.getElementById("cart_list");
     while(Parent.hasChildNodes())
     {
@@ -127,6 +130,7 @@ function cleanCart() {
 
     document.getElementById("total_price").innerHTML = 0;
     
+    //borramos las cantidades del cart
     let borrarCart;
     for(borrarCart=0; borrarCart<cart.length; borrarCart++) {
         cart[borrarCart].quantity=0;
@@ -143,7 +147,7 @@ function cleanCart() {
 
 function calculPromo() {
 
-    //calcul de promocions 
+    //calculo de promociones 
 
     let o;
     for(o=0; o<cart.length; o++) {
@@ -161,16 +165,17 @@ function calculPromo() {
 let totalPrice = 0;
 
 // Exercise 6
+// esta es la función donde optimizo todo
 function printCart() {
- 
+//impresión al modal + calculo de totales
     calculPromo();
-      //impresió al modal + calcul de totals
+    //borramos las filas antes de volver a cargar el modal
       totalPrice = 0;
       var Parent = document.getElementById("cart_list");
       while(Parent.hasChildNodes()){
       Parent.removeChild(Parent.firstChild);
       }
-
+    // listamos el cart creando una tabla  
     for(c=0; c<cart.length; c++) {
         if (cart[c].quantity > 0) {
         cart[c].subtotalWithDiscount = cart[c].price * cart[c].quantity;    
@@ -181,11 +186,14 @@ function printCart() {
         let cell3 = row.insertCell();
         let cell4 = row.insertCell();
         let cell5 = row.insertCell();
+        // creamos el boton quitar producto en cada fila
         let deleteButton = document.createElement("button");
         deleteButton.textContent = "-";
         deleteButton.className = "boton_carrito";
+        // metemos la id del producto en la función a través de asignarsela al botón como id
         deleteButton.id = cart[c].id;
         cell5.appendChild(deleteButton);
+        // asignamos una función al boton de quitar producto
         deleteButton.addEventListener("click", () => {
             let d;
             let index = deleteButton.id;
@@ -193,9 +201,11 @@ function printCart() {
                 if (cart[d].id == index ) {
                     cart[d].quantity -=1;
                     console.log(cart);
+                    // si al quitar una unidad siguen siendo más de 0 re imprimimos el modal
                     if (cart[d].quantity >0) {
                         printCart();
                     }
+                    // si al quitar una unidad se queda a 0 borramos la fila
                     if (cart[d].quantity <=0) {
                         var td = event.target.parentNode; 
                         var tr = td.parentNode;
@@ -207,6 +217,7 @@ function printCart() {
             }
         });
         let cell6 = row.insertCell();
+        // idem boton de restar pero ahora añadimos
         let addButton = document.createElement("button");
         addButton.textContent = "+";
         addButton.className = "boton_carrito";
@@ -244,7 +255,7 @@ function addToCart(id) {
 
 // Exercise 8
 function removeFromCart(id) {
-
+    // ***** Esto lo he conseguido añadiendo un boton de quitar producto en el modal
 }
 
 function open_modal(){
