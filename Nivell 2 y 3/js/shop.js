@@ -153,10 +153,17 @@ function calculPromo() {
     for(o=0; o<cart.length; o++) {
         if(cart[o].id==1 && cart[o].quantity > 2) {
             cart[o].price = 10;
-        }
-        if(cart[o].id==3 && cart[o].quantity > 10) {
-            cart[o].price *=0.66;
-        }
+        }    
+    }
+
+    let p;
+    for(p=0; p<cart.length; p++) {
+        if(cart[p].id==3) {
+            cart[p].price = 5;
+            if (cart[p].quantity >9) {
+                cart[p].price = 5*0.66.toFixed(2);
+            }
+        } 
     }
 
 }
@@ -241,7 +248,7 @@ function printCart() {
         }
     }
 
-    document.getElementById("total_price").innerHTML = totalPrice;
+    document.getElementById("total_price").innerHTML = totalPrice.toFixed(2);
 }
 
 
