@@ -70,7 +70,7 @@ var cartList = [];
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 
-// creamos el Cart
+// creamos el Cart llamando a todos los objetos del array products y le añadimos las propiedades quantity, subtotal y total 
 var cart = [];
 let m;
 for(m=0; m<products.length; m++) {
@@ -84,8 +84,7 @@ cart[n].subtotal= 0;
 cart[n].subtotalWithDiscount = 0;
 }
 
-//Se genera el array de objetos cart, que coge los datos de products y añade las propiedades de quantity, precio y descuento a cada objeto
-
+// total del cartList
 var total = 0;
 
 // Exercise 1
@@ -244,8 +243,6 @@ function printCart() {
     }
 
     document.getElementById("total_price").innerHTML = totalPrice;
-
-
 }
 
 
