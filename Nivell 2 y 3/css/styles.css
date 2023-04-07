@@ -100,11 +100,14 @@ body {
   background-position:center center;
   background-size:cover;
   border:10px solid white;
+  box-sizing:border-box!important;
+  width:32%!important;
 }
 
 #selector-row {
   z-index:200;
   margin-top:-5%!important;
+  column-gap:20px!important;
 }
 
 .header-header h1{
@@ -112,8 +115,22 @@ body {
   filter:none;
 }
 
+.bloque_indicador {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
 #indicator {
   background-color:#ff2a55;
+  border-bottom-left-radius:120px;
+}
+
+#section_title {
+  font-size:35px; 
+  line-height:1.1; 
+  font-family:reenie beanie; 
+  color:white;
 }
 
 hr {
