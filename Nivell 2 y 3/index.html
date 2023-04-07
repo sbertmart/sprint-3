@@ -39,9 +39,9 @@
 				</button>
 				<ul class="navbar-nav me-3 me-lg-0 d-flex flex-row align-items-center">
 					<li class="dropdown search-dropdown nav-item py-lg-3">
-						<a href="javascript:void(0)" class="btn btn-outline-dark flex-center" type="button"
-							data-bs-toggle="modal" data-bs-target="#cartModal" onclick="open_modal()"
-							data-bs-auto-close="outside">
+						<a style="font-size:14px;" href="javascript:void(0)"
+							class="btn btn-outline-dark flex-center boton_carrito" type="button" data-bs-toggle="modal"
+							data-bs-target="#cartModal" onclick="open_modal()" data-bs-auto-close="outside">
 							<i class="fas fa-shopping-cart me-1"></i> Cart <span
 								class="badge bg-dark text-white ms-1 rounded-pill" id="count_product">0</span>
 						</a>
@@ -84,17 +84,19 @@
 	<!-- Section-->
 	<section class="pt-5" id="selection">
 		<div class="container mt-5" id="selector-row">
-			<div class="row gx-4 gx-lg-2 row-cols-1 row-cols-md-1 row-cols-xl-3 d-flex align-self-stretch justify-content-between">
+			<div
+				class="row gx-4 gx-lg-2 row-cols-1 row-cols-md-1 row-cols-xl-3 d-flex align-self-stretch justify-content-between">
 				<div class="col-sm-12 col-lg-3" id="selector" style="background-image:url(./images/grocery.jpg);">
-					<h3 style="text-align:center; padding-top:18%; padding-bottom:18%; color:white;">Grocery</h3>
+					<a href="#grocery"><h3 class="category_title"
+						style="text-align:center; padding-top:18%; padding-bottom:18%; color:white;">GROCERY</h3></a>
 				</div>
-				<div class="col-sm-12 col-lg-3" id="selector"
-					style="background-image:url(./images/clothes.jpg);">
-					<h3 style="text-align:center; padding-top:18%; padding-bottom:18%; color:white;">Clothes</h3>
+				<div class="col-sm-12 col-lg-3" id="selector" style="background-image:url(./images/clothes.jpg);">
+					<a href="#beauty"><h3 class="category_title"
+						style="text-align:center; padding-top:18%; padding-bottom:18%; color:white;">CLOTHES</h3></a>
 				</div>
-				<div class="col-sm-12 col-lg-3" id="selector"
-					style="background-image:url(./images/beauty.jpg);">
-					<h3 style="text-align:center; padding-top:18%; padding-bottom:18%; color:white;">Beauty</h3>
+				<div class="col-sm-12 col-lg-3" id="selector" style="background-image:url(./images/beauty.jpg);">
+					<a href="#clothes"><h3 class="category_title"
+						style="text-align:center; padding-top:18%; padding-bottom:18%; color:white;">BEAUTY</h3></a>
 				</div>
 			</div>
 		</div>
@@ -104,14 +106,16 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 align-self-stretch">
 				<div class="col col-md-12 bloque_indicador mb-5" style="text-align:center;" id="indicator">
-					<div class="col px-2 py-2"  style="text-align:center;">
-						<img  src="./images/groceries.png" width="100" style="margin-bottom:20px;"></img>
-						<h2 class=" text-center" id="section_title">We have the <br><span style="margin-top:20px; font-family:Rowdies; font-size:30px; text-transform:uppercase;">freshest groceries</span> <br>just for you!</h2>
+					<div class="col px-2 py-2" style="text-align:center;">
+						<img src="./images/groceries.png" width="100" style="margin-bottom:20px;"></img>
+						<h2 class=" text-center" id="section_title">We have the <br><span
+								style="margin-top:20px; font-family:Rowdies; font-size:30px; text-transform:uppercase;">freshest
+								groceries</span> <br>just for you!</h2>
 					</div>
 				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/cooking oil.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<h5 class="fw-bolder">Cooking Oil</h5>
@@ -120,13 +124,13 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(1)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/pasta.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<h5 class="fw-bolder">Pasta</h5>
@@ -135,13 +139,13 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(2)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/cupcake.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<h5 class="fw-bolder">Instant cupcake mixture</h5>
@@ -150,7 +154,7 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(3)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
@@ -158,43 +162,51 @@
 			</div>
 		</div>
 	</section>
+
 	<section class="pt-5" id="beauty">
-		<h2 class="text-center"><i class="fas fa-heart pe-3"></i>Beauty</h2>
 		<div class="container px-4 px-lg-5 mt-5">
-			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 align-self-stretch">
+				<div class="col col-md-12 bloque_indicador mb-5" style="text-align:center;" id="indicator">
+					<div class="col px-2 py-2" style="text-align:center;">
+						<img src="./images/beauty.png" width="100" style="margin-bottom:20px;"></img>
+						<h2 class=" text-center" id="section_title">Best quality <br><span
+								style="margin-top:20px; font-family:Rowdies; font-size:30px; text-transform:uppercase;">BEAUTY
+								PRODUCTS</span> <br></h2>
+					</div>
+				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/allinone.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
-								<h5 class="fw-bolder">All-in-1</h5>
+								<h5 class="fw-bolder">All-In-One</h5>
 								$260
 							</div>
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(4)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/zeromakeup.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<h5 class="fw-bolder">Zero makeup kit</h5>
-								$20.5
+								$20.05
 							</div>
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(5)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/lips.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<h5 class="fw-bolder">Lip tints</h5>
@@ -203,7 +215,7 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(6)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
@@ -211,13 +223,21 @@
 			</div>
 		</div>
 	</section>
+
 	<section class="pt-5" id="clothes">
-		<h2 class="text-center"><i class="fas fa-tshirt pe-3"></i>Clothes</h2>
 		<div class="container px-4 px-lg-5 mt-5">
-			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 align-self-stretch">
+				<div class="col col-md-12 bloque_indicador mb-5" style="text-align:center;" id="indicator">
+					<div class="col px-2 py-2" style="text-align:center;">
+						<img src="./images/clothes.png" width="100" style="margin-bottom:20px;"></img>
+						<h2 class=" text-center" id="section_title">Organic and sweat free <br><span
+								style="margin-top:20px; font-family:Rowdies; font-size:30px; text-transform:uppercase;">CLOTHES</span>
+							<br></h2>
+					</div>
+				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/dress.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<h5 class="fw-bolder">Lawn dress</h5>
@@ -226,13 +246,13 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(7)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/dress2.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
 								<h5 class="fw-bolder">Lawn-chiffon combo</h5>
@@ -241,22 +261,22 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(8)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="./images/product.svg" alt="..." />
+					<div class="card h-100 card_producto">
+						<img class="card-img-top" src="./images/toddler.jpg" alt="..." />
 						<div class="card-body p-4">
 							<div class="text-center">
-								<h5 class="fw-bolder">Toddler Frock</h5>
+								<h5 class="fw-bolder">Toddler frock</h5>
 								$9.99
 							</div>
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center"><button type="button" onclick="buy(9)"
-									class="btn btn-outline-dark">Add to cart</button></div>
+									class="btn btn-outline-dark add_to_cart">Add to cart</button></div>
 						</div>
 					</div>
 				</div>
