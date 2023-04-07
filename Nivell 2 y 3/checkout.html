@@ -16,13 +16,21 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<!-- Core theme CSS (includes Bootstrap)-->
+	<link rel="stylesheet" href="css\styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rowdies&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
 </head>
 
 <body>
 	<!-- Navigation-->
 	<nav class="navbar py-3 py-lg-0 navbar-light bg-light navbar-expand-lg" id="navbar-example2">
 		<div class="container d-flex">
-			<a class="navbar-brand" href="#!">ShopNow</a>
+			<a class="navbar-brand" style="font-family:Rowdies; color:#ff2a55;" href="index.html">IT <span style="color:black"
+					;>ACADEMY</span> SHOP</a>
 			<div class="d-flex flex-row order-lg-last align-items-center">
 
 				<button type="button" class="navbar-toggler order-last collapsed" data-bs-toggle="collapse"
@@ -31,10 +39,11 @@
 				</button>
 				<ul class="navbar-nav me-3 me-lg-0 d-flex flex-row align-items-center">
 					<li class="dropdown search-dropdown nav-item py-lg-3">
-						<a href="javascript:void(0)" class="btn btn-outline-dark flex-center" type="button" data-bs-toggle="modal"
+						<a style="font-size:14px;" href="javascript:void(0)"
+							class="btn btn-outline-dark flex-center boton_carrito" type="button" data-bs-toggle="modal"
 							data-bs-target="#cartModal" onclick="open_modal()" data-bs-auto-close="outside">
-							<i class="fas fa-shopping-cart me-1"></i> Cart <span class="badge bg-dark text-white ms-1 rounded-pill"
-								id="count_product">0</span>
+							<i class="fas fa-shopping-cart me-1"></i> Cart <span
+								class="badge bg-dark text-white ms-1 rounded-pill" id="count_product">0</span>
 						</a>
 					</li>
 				</ul>
@@ -58,23 +67,23 @@
 		</div>
 	</nav>
 	<div class="container">
-		<h1 class="text-center head m-4">Checkout Page</h1>
+		<h1 style="text-transform:uppercase; color:#ff2a55;" class="text-center head m-4">Checkout Page</h1>
 
 		<div class="row mr-0">
 			<div class="col-sm-6">
-				<h3 class="my-3 bord shadow text-center"><i class="fas fa-dollar-sign p-2"></i>Cash on Delivery</h3>
+				<h3 style="font-size:18px;font-family:helvetica; letter-spacing:2px; text-transform:uppercase;" class="my-3 bord shadow text-center"><i class="fas fa-dollar-sign p-2"></i>Cash on Delivery</h3>
 			</div>
 			<div class="col-sm-6 ">
-				<h3 class="my-3 bord shadow text-center"><i class="fas fa-arrows-alt-h p-2"></i>100% Return</h3>
+				<h3 style="font-size:18px;font-family:helvetica; letter-spacing:2px; text-transform:uppercase;" class="my-3 bord shadow text-center"><i class="fas fa-arrows-alt-h p-2"></i>100% Return</h3>
 			</div>
 		</div>
 
 		<div class="row mr-0">
 			<div class="col-sm-6">
-				<h3 class="my-3 bord shadow text-center"><i class="far fa-thumbs-up p-2"></i>Quality Assured</h3>
+				<h3 style="font-size:18px;font-family:helvetica; letter-spacing:2px; text-transform:uppercase;" class="my-3 bord shadow text-center"><i class="far fa-thumbs-up p-2"></i>Quality Assured</h3>
 			</div>
 			<div class="col-sm-6 ">
-				<h3 class="my-3 bord shadow text-center"><i class="fas fa-stopwatch p-2"></i>Delivery on time</h3>
+				<h3 style="font-size:18px; font-family:helvetica; letter-spacing:2px; text-transform:uppercase;" class="my-3 bord shadow text-center"><i class="fas fa-stopwatch p-2"></i>Delivery on time</h3>
 			</div>
 		</div>
 		<form class="form">
@@ -119,7 +128,7 @@
 					</div>
 				</div>
 				<div class="col-12 mt-4 final">
-					<button type="submit" id="btn" class="p-2 px-4 btn btn-primary shadow-lg" onclick="validate()">
+					<button type="submit" id="btn" style="background-color:#ff2a55; color:white; border-style:none;" class="p-2 px-4 btn btn-primary shadow-lg" onclick="validate()">
 						<i class="fas fa-cart-arrow-down p-2"></i>Save
 					</button>
 				</div>
