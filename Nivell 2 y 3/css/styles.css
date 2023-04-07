@@ -87,6 +87,7 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow-x:hidden;
 }
 /* css afegit */
 
@@ -213,6 +214,45 @@ hr:not([size]) {
 .card_producto img {
   border:10px solid white!important;
   box-sizing:border-box!important;
+}
+
+@media (max-width:540px) {
+  #selector {
+    width:100%!important;
+  }
+  #indicator {
+    width:100%!important;
+    border-bottom-left-radius:50px!important;
+  }
+
+  #indicator .h2span {
+    font-size:25px!important;
+  }
+  .header-header {font-size:45px!important;}
+
+  .subtitle {
+    font-size:20px; 
+    line-height:1.1;
+    margin:0!important;
+    width:100%!important;}
+
+    .columna_form {
+      margin:0!important;
+      padding:0!important;
+    }
+
+    .contenidor-navbar {
+      display:flex!important;
+    }
+
+    .navbar-brand {
+      width:100%!important;
+      font-size:25px!important;
+    }
+
+    .contenidor-boto {
+      width: 100%!important;
+    }
 }
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
